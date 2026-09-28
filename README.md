@@ -73,3 +73,6 @@ The client app will be available at `http://localhost:5173`.
 | **Admin** | `admin@company.com` | `admin123` |
 | **Manager** | `manager@company.com` | `manager123` |
 | **Employee** | `employee@company.com` | `employee123` |
+
+## Author 
+Mohammed Furqaan Annigeri
