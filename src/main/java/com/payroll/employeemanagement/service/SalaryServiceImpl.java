@@ -70,7 +70,12 @@ public class SalaryServiceImpl implements SalaryService {
                 .year(year)
                 .build();
 
-        return salaryRepository.save(salary);
+        try {
+            return salaryRepository.save(salary);
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            throw new ResourceAlreadyExistsException("Salary slip has already been generated for Employee ID " 
+                    + employeeId + " for the period: " + month + "/" + year);
+        }
     }
 
     @Override

@@ -57,7 +57,11 @@ public class AttendanceServiceImpl implements AttendanceService {
                 .status(status)
                 .build();
 
-        return attendanceRepository.save(attendance);
+        try {
+            return attendanceRepository.save(attendance);
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            throw new ResourceAlreadyExistsException("Employee already checked in today for date: " + today);
+        }
     }
 
     @Override

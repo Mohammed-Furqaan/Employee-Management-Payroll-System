@@ -16,7 +16,6 @@ const AuthView = () => {
     phone: '',
     hireDate: new Date().toISOString().split('T')[0],
     password: '',
-    roleName: 'ROLE_EMPLOYEE',
   });
 
   const handleChange = (e) => {
@@ -189,20 +188,6 @@ const AuthView = () => {
                     required
                   />
                 </div>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Assign Role</label>
-                <select
-                  name="roleName"
-                  value={formData.roleName}
-                  onChange={handleChange}
-                  className="form-select"
-                >
-                  <option value="ROLE_EMPLOYEE">Employee (ROLE_EMPLOYEE)</option>
-                  <option value="ROLE_MANAGER">Manager (ROLE_MANAGER)</option>
-                  <option value="ROLE_ADMIN">Administrator (ROLE_ADMIN)</option>
-                </select>
               </div>
             </>
           )}

@@ -17,8 +17,7 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    // Default base64 encoded key (representing a 256-bit key for HMAC-SHA256)
-    @Value("${app.jwt.secret:Y29tLnBheXJvbGwuZW1wbG95ZWVtYW5hZ2VtZW50Lmp3dC5zZWNyZXQucGhyYXNlLmtleS5mb3IuaG1hYy5zaGEyNTY=}")
+    @Value("${app.jwt.secret}")
     private String jwtSecret;
 
     @Value("${app.jwt.expiration-ms:86400000}") // 24 Hours default

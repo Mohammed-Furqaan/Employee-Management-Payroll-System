@@ -37,10 +37,6 @@ public class RegisterRequest {
 
     private Long departmentId;
 
-    private Long roleId;
-
-    private String roleName;
-
     private Long managerId;
 }
 

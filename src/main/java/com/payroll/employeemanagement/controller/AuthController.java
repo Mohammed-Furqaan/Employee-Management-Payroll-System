@@ -91,19 +91,9 @@ public class AuthController {
             throw new EmailAlreadyExistsException("Email address already in use: " + registerRequest.getEmail());
         }
 
-        // 2. Resolve Role (by roleId or roleName or default to ROLE_EMPLOYEE)
-        Role role = null;
-        if (registerRequest.getRoleId() != null) {
-            role = roleRepository.findById(registerRequest.getRoleId()).orElse(null);
-        }
-        if (role == null && registerRequest.getRoleName() != null && !registerRequest.getRoleName().isBlank()) {
-            role = roleRepository.findByRoleName(registerRequest.getRoleName())
-                    .orElseGet(() -> roleRepository.save(Role.builder().roleName(registerRequest.getRoleName()).build()));
-        }
-        if (role == null) {
-            role = roleRepository.findByRoleName("ROLE_EMPLOYEE")
-                    .orElseGet(() -> roleRepository.save(Role.builder().roleName("ROLE_EMPLOYEE").build()));
-        }
+        // 2. Always assign standard ROLE_EMPLOYEE for self-registration
+        Role role = roleRepository.findByRoleName("ROLE_EMPLOYEE")
+                .orElseGet(() -> roleRepository.save(Role.builder().roleName("ROLE_EMPLOYEE").build()));
 
         // 3. Resolve Department (optional during registration)
         Department department = null;
